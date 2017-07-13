@@ -10,16 +10,22 @@ filebeat_output_elasticsearch_enabled: false
 filebeat_output_elasticsearch_hosts:
   - "localhost:9200"
 
-filebeat_output_logstash_enabled: true
+filebeat_output_logstash_enabled: false
 filebeat_output_logstash_hosts:
   - "localhost:5044"
 
-filebeat_enable_logging: false
+filebeat_output_redis_enabled: true
+filebeat_output_redis_hosts:
+  - "localhost:6379"
+
+filebeat_enable_logging: true
 filebeat_log_level: warning
-filebeat_log_dir: /var/log/mybeat
-filebeat_log_filename: mybeat.log
+filebeat_log_dir: /var/log/beats
+filebeat_log_filename: filebeat.log
 
 filebeat_ssl_dir: /etc/pki/logstash
 filebeat_ssl_certificate_file: ""
 filebeat_ssl_key_file: ""
 filebeat_ssl_insecure: "false"
+
+filebeat_install_repo: "true"

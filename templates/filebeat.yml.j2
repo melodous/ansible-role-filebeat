@@ -1,7 +1,6 @@
 filebeat:
   # List of prospectors to fetch data.
-  prospectors:
-    {{ filebeat_prospectors | to_json }}
+  prospectors: {{ filebeat_prospectors | to_json }}
 
 # Configure what outputs to use when sending the data collected by the beat.
 # Multiple outputs may be used.
@@ -87,6 +86,17 @@ output:
       #max_version: 1.2
 {% endif %}
 {% endif %}
+  
+{% if filebeat_output_redis_enabled %}
+  ### Redis as output
+  redis:
+    #The Redis hosts
+    hosts: {{ filebeat_output_redis_hosts }}
+    #key: "filebeat"
+    #db: 0
+    #timeout: 5
+
+{% endif %}
 
 {% if filebeat_output_logstash_enabled %}
   ### Logstash as output
@@ -130,6 +140,8 @@ output:
       # Configure curve types for ECDHE based cipher suites
       #curve_types: []
 {% endif %}
+{% endif %}
+
 
 {% if filebeat_enable_logging %}
 logging:
@@ -146,5 +158,4 @@ logging:
     path: {{ filebeat_log_dir }}
     name: {{ filebeat_log_filename }}
     keepfiles: 7
-{% endif %}
 {% endif %}

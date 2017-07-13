@@ -3,9 +3,11 @@
   rpm_key:
     key: https://packages.elastic.co/GPG-KEY-elasticsearch
     state: present
+  when: filebeat_install_repo
 
 - name: Add Filebeat repository.
   template:
     src: beats.repo.j2
     dest: /etc/yum.repos.d/beats.repo
     mode: 0644
+  when: filebeat_install_repo
